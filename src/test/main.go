@@ -86,7 +86,7 @@ fmt.Println(&g) //address of p
 
 }
 
-//new function other than main/ call it in the mainn
+//new function other than main/ call it in the main
 
 func sum(x int, y int) int{
 	return x + y
