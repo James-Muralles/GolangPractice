@@ -1,16 +1,16 @@
 package model
 
 
-import "src/config"
+import "../config"
 
 // Fields first letter must be uppercase so we can export them to templates.
 type Dog struct {
-    ID 	       string
+    ID         int
     Name       string
     Breed	   string
 }
 
-// Show all dogs
+ //Show all dogs
 func ShowAllDogs() ([]Dog, error) {
 
     rows, err := config.DB.Query("SELECT * FROM dogs")
@@ -20,7 +20,7 @@ func ShowAllDogs() ([]Dog, error) {
     }
     defer rows.Close()
 
-    patients := make([]Dog, 0)
+    dogs := make([]Dog, 0)
     for rows.Next() {
         dog := Dog{}
         err := rows.Scan(&dog.ID, &dog.Name, &dog.Breed)
@@ -28,7 +28,7 @@ func ShowAllDogs() ([]Dog, error) {
 
             return nil, err
         }
-        patients = append(dogs, dog)
+        dogs = append(dogs, dog)
     }
     if err = rows.Err(); err != nil {
         return nil, err
