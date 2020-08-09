@@ -13,8 +13,11 @@ var tpl *template.Template
 
 func main() {
     http.HandleFunc("/", index)
-    http.HandleFunc("/list", model.DogIndex)
-    http.ListenAndServe(":8080", nil)
+http.HandleFunc("/list", model.DogIndex)
+http.HandleFunc("/dog/show", model.DogShow)
+
+http.ListenAndServe(":8080", nil)
+
 }
 
 func index(w http.ResponseWriter, r *http.Request) {

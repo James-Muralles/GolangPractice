@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Create Patient</title>
+
+        <title>Create Dog</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -35,6 +36,7 @@
                     <td>{{.ID}}</td>
                     <td>{{.Name}}</td>
                     <td>{{.Breed}}</td>
+                    <td><a class="action" href="/dog/show?id={{.ID}}">View</a></td>
                      <td><a class="action" href="">View</a></td>
                     <td><a class="action" href="">Edit</a></td>
                     <td><a class="action" href="">Delete</a></td>
