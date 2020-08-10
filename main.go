@@ -12,9 +12,11 @@ import (
 var tpl *template.Template
 
 func main() {
-    http.HandleFunc("/", index)
+http.HandleFunc("/", index)
 http.HandleFunc("/list", model.DogIndex)
 http.HandleFunc("/dog/show", model.DogShow)
+http.HandleFunc("/dog/create", model.DogCreate)
+http.HandleFunc("/dog/create/process", model.DogreateProcess)
 
 http.ListenAndServe(":8080", nil)
 

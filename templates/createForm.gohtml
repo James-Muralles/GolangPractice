@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Add Patient Details</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+       <![endif]-->
+
+
+<div class="container mt-4" >
+<h1>Add Dog</h1>
+
+<form method="post" action="/dog/create/process">
+  <div class="form-group">
+    <label for="dogID">Dog ID</label>
+    <input type="number" class="form-control" name="patientID" id="dogID" placeholder="Dog ID">
+  </div>
+  <div class="form-group">
+    <label for="name">Dog's's Name</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="Dog' s Name">
+  </div>
+  <div class="form-group">
+    <label for="name">Breed</label>
+    <input type="text" class="form-control" name="breed" id="breed" placeholder="Breed">
+  </div>
+  <a class="action btn btn-primary" href="">Save</a>
+  <a class="action btn btn-primary" href="/">Cancel</a>
+</form>
+</div>
+        <script src="" async defer></script>
+    </body>
+</html>

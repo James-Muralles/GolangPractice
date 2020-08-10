@@ -9,7 +9,7 @@ import (
 
 // Fields first letter must be uppercase so we can export them to templates.
 type Dog struct {
-    ID         int
+    ID         string
     Name       string
     Breed	   string
 }
@@ -43,16 +43,37 @@ func ShowAllDogs() ([]Dog, error) {
 
 func SingleDog(r *http.Request) (Dog, error) {
     dog := Dog{}
-    ID := r.FormValue("ID")
+    ID := r.FormValue("id")
     if ID == "" {
         return dog, errors.New("400. Bad Request.")
     }
 
-    row := config.DB.QueryRow("SELECT * FROM dogs WHERE patient_id = $1", ID)
+    row := config.DB.QueryRow("SELECT * FROM dogs WHERE id = $1", ID)
 
     err := row.Scan(&dog.ID, &dog.Name, &dog.Breed)
     if err != nil {
         return dog, err
     }
     return dog, nil
+}
+
+func InsertDog(r *http.Request) (Dog, error) {
+    // get form values
+    d := Dog{}
+    d.ID = r.FormValue("dogID")
+    d.Name = r.FormValue("name")
+    d.Breed = r.FormValue("breed")
+
+    
+    // validate form values
+    if d.ID == "" || d.Name == "" || d.Breed == ""  {
+        return d, errors.New("400. Bad request. All fields must be complete.")
+    }
+
+    // insert values
+    _, err := config.DB.Exec("INSERT INTO dogs (id, name, breed) VALUES ($1, $2, $3)", d.ID, d.Name, d.Breed)
+    if err != nil {
+        return d, errors.New("500. Internal Server Error." + err.Error())
+    }
+    return d, nil
 }
