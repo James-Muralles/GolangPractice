@@ -16,7 +16,9 @@ http.HandleFunc("/", index)
 http.HandleFunc("/list", model.DogIndex)
 http.HandleFunc("/dog/show", model.DogShow)
 http.HandleFunc("/dog/create", model.DogCreate)
-http.HandleFunc("/dog/create/process", model.DogreateProcess)
+http.HandleFunc("/dog/create/process", model.DogCreateProcess)
+http.HandleFunc("/dog/update", model.DogUpdate)
+http.HandleFunc("/dog/update/process", model.DogUpdateProcess)
 
 http.ListenAndServe(":8080", nil)
 

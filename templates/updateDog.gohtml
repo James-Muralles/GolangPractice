@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Add Patient Details</title>
+        <title>Edit Patient Details</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -17,20 +17,20 @@
 
 
 <div class="container mt-4" >
-<h1>Add Patient</h1>
+<h1>Edit Dog</h1>
 
-<form method="post" action="/dog/create/process">
+<form method="post" action="/dog/update/process">
   <div class="form-group">
-    <label for="dogID">Dog ID</label>
-    <input type="text" class="form-control" name="dogID" id="dogID" placeholder="Patient ID">
+    <label for="dogID"> Dog ID</label>
+    <input type="text" class="form-control" name="dogID" id="dogID" placeholder="Dog ID" value="{{.ID}}">
   </div>
   <div class="form-group">
     <label for="name">Dog's Name</label>
-    <input type="text" class="form-control" name="name" id="name" placeholder="Patient's Name">
+    <input type="text" class="form-control" name="name" id="name" placeholder="Dog's Name" value="{{.Name}}">
   </div>
   <div class="form-group">
-    <label for="breed">Breed</label>
-    <input type="text" class="form-control" name="breed" id="breed" placeholder="Breed">
+    <label for="breed">Dog's Breed</label>
+    <input type="text" class="form-control" name="breed" id="breed" placeholder="Dog's Breed" value="{{.Breed}}">
   </div>
   <input class="btn btn-primary" type="submit">
   <a class="action btn btn-primary" href="/">Cancel</a>

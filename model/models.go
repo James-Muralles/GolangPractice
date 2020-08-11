@@ -77,3 +77,22 @@ func InsertDog(r *http.Request) (Dog, error) {
     }
     return d, nil
 }
+
+func UpdateDog(r *http.Request) (Dog, error) {
+    // get form values
+    d := Dog{}
+    d.ID = r.FormValue("dogID")
+    d.Name = r.FormValue("name")
+    d.Breed = r.FormValue("breed")
+    // validate form values
+    if d.ID == "" || d.Name == "" || d.Breed == "" {
+        return d, errors.New("400. Bad request. All fields must be complete.")
+    }
+
+    // insert values
+    _, err := config.DB.Exec("UPDATE dogs SET id= $1, name=$2, breed=$3 WHERE id=$1;", d.ID, d.Name, d.Breed)
+    if err != nil {
+        return d, err
+    }
+    return d, nil
+}
