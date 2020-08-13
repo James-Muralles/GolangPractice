@@ -19,6 +19,7 @@ http.HandleFunc("/dog/create", model.DogCreate)
 http.HandleFunc("/dog/create/process", model.DogCreateProcess)
 http.HandleFunc("/dog/update", model.DogUpdate)
 http.HandleFunc("/dog/update/process", model.DogUpdateProcess)
+http.HandleFunc("/dog/delete/process", model.DogDeleteProcess)
 
 http.ListenAndServe(":8080", nil)
 

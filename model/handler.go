@@ -89,3 +89,20 @@ func DogUpdateProcess(w http.ResponseWriter, r *http.Request) {
 
     config.TPL.ExecuteTemplate(w, "updatedDog.gohtml", dog)
 }
+
+func DogDeleteProcess(w http.ResponseWriter, r *http.Request) {
+    if r.Method != "GET" {
+        http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+        return
+    }
+
+    err := DeleteDog(r)
+    if err != nil {
+        http.Error(w, http.StatusText(400), http.StatusBadRequest)
+        return
+    }
+
+    http.Redirect(w, r, "/list", http.StatusSeeOther)
+}
+
+    

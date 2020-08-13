@@ -96,3 +96,16 @@ func UpdateDog(r *http.Request) (Dog, error) {
     }
     return d, nil
 }
+
+func DeleteDog(r *http.Request) error {
+    pID := r.FormValue("id")
+    if pID == "" {
+        return errors.New("400. Bad Request.")
+    }
+
+    _, err := config.DB.Exec("DELETE FROM dogs WHERE id=$1;", pID)
+    if err != nil {
+        return errors.New("500. Internal Server Error")
+    }
+    return nil
+}
