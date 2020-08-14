@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"errors"
 	"math"
-	"database/sql"
-	"net/http"
 	_ "github.com/lib/pq"
+	"./util"
 )
 
 func main() {
@@ -85,6 +84,10 @@ fmt.Println(p.name)
 
 g:=5
 fmt.Println(&g) //address of p
+fmt.Println(util.Reverse("Hello"))
+fmt.Println(greeting(util.Reverse("Jimmy")))
+fmt.Println(greeting("Jimmy "),  getSum(6,6)) 
+
 
 }
 
@@ -102,6 +105,14 @@ func sqrt (x float64) (float64, error){
 	}
 	return math.Sqrt(x), nil
 }
+
+func greeting(name string) string{
+	return "Hello " + name
+}
+
+func getSum(num1 int, num2 int) int{
+	return num1 + num2
+}
 //struct type outside function
 
 type person struct {
@@ -110,3 +121,4 @@ type person struct {
 
 }
 //pointers using & and *
+
