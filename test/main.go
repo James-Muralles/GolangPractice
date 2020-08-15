@@ -28,12 +28,15 @@ if num == num1 {
 
 //arrays
 var arr [5]int
+arr4 := []int{}
 arr1:= [5]int{1,2,3,4,5}
 arr2:= []int{1,2,3,4,5} //this is a slice, not limited to just 5 indexes
 arr2 = append(arr2, 13,2)
+arr4 = append(arr4, 3,2,2,3,4,5)
 fmt.Println(arr)
 fmt.Println(arr1)
 fmt.Println(arr2)
+fmt.Println(arr4)
 
 //How to map
 vertices := make(map[string]int)
@@ -43,8 +46,8 @@ vertices["square"] = 3
 fmt.Println(vertices)
 
 //loops: only type is the for loop/ doubles as while  
-for i := 0; i<5; i++{
-	fmt.Println(i)
+for i := 0; i<=5; i++{
+	fmt.Printf("number is %d\n ", i)
 }
 
 fmt.Println("Beginning of while")
@@ -71,12 +74,33 @@ for key,value := range vertices {
 // println(result)
 // fmt.Println(sum(5,7))
 
-result, err  := sqrt(-4)
+ids :=[]int{23,34,455,87}
+
+for i , id := range ids {
+	fmt.Printf("\n%d - ID: %d\n ", i, id)
+}
+result, err  := sqrt(4)
 if err != nil {
 	fmt.Println(err)
 }else {
 	//if you dont just use println() with out fmt number formatting is different
 	fmt.Println(result)
+	fmt.Printf("%d is the answer\n", result)
+}
+
+
+//switch statement
+
+color:= "yellow"
+
+switch color{
+case "red":
+	fmt.Println("color is red")
+case "blue":
+	fmt.Println("color is blue")
+	default:
+		fmt.Println("color is not blue or red")
+
 }
 
 p:= person{name: "Jimmy", age: 29}
@@ -87,7 +111,8 @@ fmt.Println(&g) //address of p
 fmt.Println(util.Reverse("Hello"))
 fmt.Println(greeting(util.Reverse("Jimmy")))
 fmt.Println(greeting("Jimmy "),  getSum(6,6)) 
-
+fmt.Println(len(arr4))//len gives you the length of an array
+fizzBuzz()
 
 }
 
@@ -112,6 +137,20 @@ func greeting(name string) string{
 
 func getSum(num1 int, num2 int) int{
 	return num1 + num2
+}
+
+func fizzBuzz(){
+	for i:= 1; i<100; i++{
+		if i % 15 == 0{
+			fmt.Printf("fizz buzz %d\n",i)
+		}else if i % 3 == 0{
+			fmt.Printf("fizz %d\n",i)
+		}else if i % 5 == 0{
+			fmt.Printf("Buzz %d\n",i)
+		}else {
+			fmt.Printf("OOOPS %d\n",i)
+		}
+	}
 }
 //struct type outside function
 
