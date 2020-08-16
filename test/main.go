@@ -79,6 +79,22 @@ ids :=[]int{23,34,455,87}
 for i , id := range ids {
 	fmt.Printf("\n%d - ID: %d\n ", i, id)
 }
+//loop through and add ids in a slice
+sum:=0
+for _, id := range ids {
+	sum += id
+	fmt.Println("Sum", sum)
+	fmt.Printf("TYPE= %T\n", sum)//printing the type
+	//READ A VALUE FROM AN ADRESS USE *
+}
+
+//loop through a map
+emails := (map[string]string{"Jimmy": "jimmy@mail.com", "James": "james@email.com", "Jim": "jim@email.com"})
+for k, v := range emails{
+	fmt.Printf("%s: %s\n" , k, v)
+}
+
+
 result, err  := sqrt(4)
 if err != nil {
 	fmt.Println(err)
@@ -113,6 +129,11 @@ fmt.Println(greeting(util.Reverse("Jimmy")))
 fmt.Println(greeting("Jimmy "),  getSum(6,6)) 
 fmt.Println(len(arr4))//len gives you the length of an array
 fizzBuzz()
+//functional programming
+sum1 := adder()
+for i := 0; i < 10; i++{
+	fmt.Println(sum1(i))
+}
 
 }
 
@@ -152,6 +173,18 @@ func fizzBuzz(){
 		}
 	}
 }
+
+//EXAMPLE OF FUNCTIONAL PROGRAMMING
+
+func adder() func(int)int{
+	sum1 := 0
+	return func(x int)int{
+		sum1 += x
+		return sum1
+	}
+
+}
+
 //struct type outside function
 
 type person struct {
