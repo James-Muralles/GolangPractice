@@ -6,6 +6,7 @@ import (
 	"math"
 	_ "github.com/lib/pq"
 	"./util"
+	"strconv"
 )
 
 func main() {
@@ -135,6 +136,15 @@ for i := 0; i < 10; i++{
 	fmt.Println(sum1(i))
 }
 
+//Init person struct
+
+person1:=person{name: "Pop", age: 20}
+//or it can be written like this
+person2 := person{"Pop", 20}
+fmt.Println(person1)
+fmt.Println(person2)
+fmt.Println(person1.greeting())
+
 }
 
 //new function other than main/ call it in the main
@@ -191,6 +201,10 @@ type person struct {
 	name string
 	age int
 
+}
+
+func (p person) greeting()string{
+	return "Hello name is " + p.name + " and i am " + strconv.Itoa(p.age) + " years old."
 }
 //pointers using & and *
 
