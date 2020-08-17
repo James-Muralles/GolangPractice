@@ -7,6 +7,8 @@ import (
 	_ "github.com/lib/pq"
 	"./util"
 	"strconv"
+	"net/http"
+
 )
 
 func main() {
@@ -138,13 +140,25 @@ for i := 0; i < 10; i++{
 
 //Init person struct
 
-person1:=person{name: "Pop", age: 20}
+person1:=person{name: "Pop", lastName: "Bob", gender: "Male", age: 20 }
 //or it can be written like this
-person2 := person{"Pop", 20}
+person2 := person{"Sue", "Anne", "Female", 20}
 fmt.Println(person1)
 fmt.Println(person2)
+person1.hasBirthday()
+person2.hasBirthday()
 fmt.Println(person1.greeting())
+person2.getMarried("Steve")
+fmt.Println(person2.greeting())
+circle := Circle{x:0, y:0, radius:5}
+rectangle := Rectangle{h: 5, w: 5}
+fmt.Printf("Circle Area: %.2f\nRectangle Area: %.2f\n ",getArea(circle), getArea(rectangle) )
 
+http.HandleFunc("/", index)
+http.HandleFunc("/about", about)
+
+fmt.Println("Server starting...")
+http.ListenAndServe(":3000",nil)
 }
 
 //new function other than main/ call it in the main
@@ -198,13 +212,78 @@ func adder() func(int)int{
 //struct type outside function
 
 type person struct {
-	name string
-	age int
+	// name 	 string
+	// lastName string
+	// gender 	 string
+	// age 	 int
+
+	// can also be written like this
+	name, lastName, gender string
+	age int 
 
 }
 
+
+//method for greeting (value receiver)
 func (p person) greeting()string{
-	return "Hello name is " + p.name + " and i am " + strconv.Itoa(p.age) + " years old."
+	return "Hello name is " + p.name + " " + p.lastName + " and I am " + strconv.Itoa(p.age) + " years old."
 }
+
+//method for changing age(pointer reciever)
+func (p * person) hasBirthday(){
+	if p.gender == "Male"{
+		p.age++
+	}else if p.gender == "Female"{
+		p.age--
+	}
+}
+
+//getMarried (pointer reviever)
+
+func (p * person) getMarried(spouseLastname string) {
+if p.gender == "Male"{
+	return
+}else{
+	p.lastName = spouseLastname
+}
+}
+
+//interface defined
+
+type shape interface{
+area() float64
+}
+
+type Circle struct{
+	x, y, radius float64
+}
+
+type Rectangle struct{
+	h, w float64
+}
+
+func (c Circle) area() float64{
+	return math.Pi * c.radius * c.radius
+}
+
+func (r Rectangle) area() float64{
+	return r.h * r.w
+}
+
+func getArea(s shape) float64{
+	return s.area()
+}
+
+//web, routers
+
+func index(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "<h1>Hello!</h1>")//output to browser
+}
+
+func about(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "<h1>About</h1>")//output to browser
+}
+
+
 //pointers using & and *
 
