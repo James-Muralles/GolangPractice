@@ -25,7 +25,15 @@ type Author struct {
 	Lastname string `json: "lastname"`
 }
 
+//function to get all book
 
+//function to get one book
+
+//function to create a book
+
+//function to update a book
+
+//function to delete a book
 
 
 func main() {
